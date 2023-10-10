@@ -15,6 +15,13 @@ Object-Relational Mapping (ORM) Tool - Diesel in RUST
 #### Install backend libraries
 Diesel supports SQLite, PostgreSQL, and MySQL as database backends. By default, diesel_cli requires the client library of all three backends to be installed. If one is missing, then cargo install diesel_cli will throw an error. To install diesel_cli without all backends, specify --no-default-features. Use cargo's --features option to specify postgres, sqlite, and/or mysql. For example, to install with sqlite only, run:
 `cargo install diesel_cli --no-default-features --features postgres`
+1. Create Rust project
+`cargo cargo new porject_name --bin`
+2. add database connector .env file at the root of project
+`touch .env` 
+3. Edit .env file with:
+`DATABASE_URL=my_project.sql
+TEST_DATABASE_URL=my_project.sql`
 ### Database Assignment
 ## Backend
 ### Backend Assignment
