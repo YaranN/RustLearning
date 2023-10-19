@@ -19,9 +19,23 @@ Diesel supports SQLite, PostgreSQL, and MySQL as database backends. By default, 
 `cargo cargo new porject_name --bin`
 2. add database connector .env file at the root of project
 `touch .env` 
-3. Edit .env file with:
-`DATABASE_URL=my_project.sql
-TEST_DATABASE_URL=my_project.sql`
+3. Start a server and create database on pgAdmin
+4. Edit .env file for Postgresql
+`DATABASE_URL=postgresql://xnan:xnan@localhost:5432/diesel_example`
+`TEST_DATABASE_URL=postgresql://xnan:xnan@localhost:5432/diesel_test`
+5. Creat a product
+'diesel migration generate create_products
+6. Up.sql and down.sql
+'CREATE TABLE products (
+  id INTEGER PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  cost DOUBLE PRECISION NOT NULL,
+  active BOOLEAN NOT NULL 
+)
+'drop table products
+7. Run migrarion
+'diesel migration run
+8. Model.rs
 ### Database Assignment
 ## Backend
 ### Backend Assignment

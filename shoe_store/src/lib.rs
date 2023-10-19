@@ -1,7 +1,7 @@
-extern crate diesel;
-extern crate dotenv;
-extern crate serde;
-extern crate serde_json;
+//extern crate diesel;
+//extern crate dotenv;
+//extern crate serde;
+//extern crate serde_json;
 
 pub mod schema;
 pub mod models;
@@ -29,9 +29,3 @@ pub fn establish_connection_test() -> PgConnection {
         .expect(&format!("Error connecting to {}", database_url))
 }
 
-fn create_product(new_product: NewProduct, conn: &SqliteConnection) -> Result<usize, Error>  {
-    use ::shoe_store::schema::products::dsl::*;
-    diesel::insert_into(products)
-        .values(new_product)
-        .execute(conn)
-}

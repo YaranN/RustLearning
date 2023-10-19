@@ -1,18 +1,17 @@
-use diesel::Connection;
-use ::shoe_store::establish_connection_test;
+use diesel::query_dsl::QueryDsl;
+use diesel::RunQueryDsl;
+use ::shoe_store::establish_connection;
+use ::shoe_store::models::*;
 
-#[test]
-fn create_product_test() {
-    let connection = establish_connection_test();
-    connection.test_transaction::<_, Error, _>(|| {
-        let results = 
-            create_product(NewProduct {
-                name: "boots".to_string(),
-                cost: 13.23,
-                active: true
-            }, &connection);
-        assert_eq!(Ok(1), results);
+fn list_products() -> Vec<Product> {
+    use ::shoe_store::schema::products::dsl::*;
+    let connection = establish_connection();
+    products
+        .limit(10)
+        .load::<Product>(&connection)
+        .expect("Error loading products")
+}
 
-        Ok(())
-    });
+fn main() {
+    println!("The products are: {:#?}", list_products());
 }
